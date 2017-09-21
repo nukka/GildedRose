@@ -39,4 +39,41 @@ public class GildedRoseTest {
 	public void testUpdateEndOfDay() {
 		fail("Test not implemented");
 	}
+	
+	@Test
+	public void testIfItemsAreAdded() {
+		GildedRose store = new GildedRose();
+		store.addItem(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+		store.addItem(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
+		store.addItem(new Item("+5 Dexterity Vest", 10, 20));
+		
+	}
+	
+	@Test
+	public void testIfItemSizeIsCorrect() {
+		GildedRose store = new GildedRose();
+		
+		store.addItem(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+		store.addItem(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
+		store.addItem(new Item("+5 Dexterity Vest", 10, 20));
+		
+		List<Item> items = store.getItems();
+		assertEquals(3, items.size());
+		
+	}
+	
+	@Test
+	public void testIfQualityValueDecreasesIfNotSpecialItem(){
+		GildedRose store = new GildedRose();
+		store.addItem(new Item("Conjured Mana Cake", 3, 6));
+		
+		store.updateEndOfDay();
+		
+		List<Item> items = store.getItems();
+		Item cake = items.get(0);
+		
+		assertEquals(5, cake.getQuality());
+		
+		
+	}
 }
